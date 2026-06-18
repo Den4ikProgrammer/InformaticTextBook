@@ -27,7 +27,7 @@
 
             <Button x:Name="ToProfileButton" Visibility="Collapsed" Grid.Column="2" Content="Личный кабинет" Margin="0,5,10,5" Padding="10,2"
                 VerticalAlignment="Center" Click="ToProfileButton_Click"/>
-            <Button x:Name="ExitButton" Grid.Column="5" Visibility="Collapsed" Content="Выход" Margin="0,5,10,5" Padding="10,2"
+            <Button x:Name="ExitButton" Grid.Column="5" Content="Выход" Margin="0,5,10,5" Padding="10,2"
                 VerticalAlignment="Center" Click="ExitButton_Click"/>
             <Button x:Name="TypingTrainer" Content="Тренажер печати" Visibility="Collapsed" Grid.Column="3" Margin="0,5,10,5" Padding="10,2"
                 VerticalAlignment="Center" Click="TypingTrainer_Click"/>
