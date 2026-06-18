@@ -28,6 +28,7 @@ namespace ServiceLayer.Services
 
         public async Task<Visit> CreateOrGetVisitAsync(int userId, int lectionId)
         {
+            if (userId == 0) return new Visit { LectionId = lectionId, VisitTime = 0 };
             var visit = await _context.Visits
                 .FirstOrDefaultAsync(v => v.UserId == userId && v.LectionId == lectionId);
 

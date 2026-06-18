@@ -35,10 +35,14 @@
 
                     <Label x:Name="IncorrectDataLabel" Content="*Логин или Пароль введены неверно" Foreground="#CD5C5C" 
                Visibility="Hidden" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,5,0,0"/>
+                    <StackPanel Orientation="Horizontal">
                     <Button x:Name="authorizeButton" Content="Авторизоваться" Margin="10" Padding="10,5" Width="180"
             HorizontalAlignment="Center" Click="AuthorizeButton_Click"
             Background="#CD853F" BorderBrush="#556B2F" Foreground="#FFFDD0" FontFamily="Comic Sans MS" FontSize="15"/>
-
+                    <Button x:Name="guestButton" Content="Войти как гость" Margin="10" Padding="10,5" Width="180"
+        HorizontalAlignment="Center" Click="guestButton_Click"
+        Background="#CD853F" BorderBrush="#556B2F" Foreground="#556B2F" FontFamily="Comic Sans MS" FontSize="15"/>
+                    </StackPanel>
                 </StackPanel>
             </Viewbox>
         </StackPanel>

@@ -54,5 +54,13 @@ namespace InformaticTextBook.Pages
         {
             IncorrectDataLabel.Visibility = Visibility.Hidden;
         }
+
+        private void guestButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentUser.UserID = 0;
+            CurrentUser.Role = new ServiceLayer.Models.Role { RoleId = 0, RoleName = "Гость" };
+            CurrentUser.UserLogin = "Гость";
+            App.CurrentFrame.Navigate(new LectionsNavigatorPage());
+        }
     }
 }

@@ -96,6 +96,12 @@ namespace InformaticTextBook.Pages
         public LectionsNavigatorPage()
         {
             InitializeComponent();
+            if (CurrentUser.Role.RoleId != 0)
+            {
+                ToProfileButton.Visibility = Visibility.Visible;
+                TypingTrainer.Visibility = Visibility.Visible;
+                AlgoritmVisualizerButton.Visibility = Visibility.Visible;
+            }
             DataContext = this;
             UserLoginText = $"Пользователь: {CurrentUser.UserLogin}";
         }

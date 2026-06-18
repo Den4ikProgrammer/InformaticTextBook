@@ -37,7 +37,7 @@ public partial class InformaticTextBookContext : DbContext
     public virtual DbSet<TypingResult> TypingResults { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=MSI;Initial Catalog=InformaticTextBook;Integrated Security=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=InformaticTextBook;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

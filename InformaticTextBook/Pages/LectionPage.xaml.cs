@@ -88,6 +88,8 @@ namespace InformaticTextBook.Pages
         }
         private async void LectionPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if (CurrentUser.UserID == 0) return;
+
             // создаём визит
             _currentVisit = await _visitService.CreateOrGetVisitAsync(CurrentUser.UserID, SelectedLection.LectionId);
             TimeSpan lectionTime = TimeSpan.FromSeconds(Convert.ToDouble(_currentVisit.VisitTime));
@@ -110,6 +112,9 @@ namespace InformaticTextBook.Pages
 
         private async void LectionPage_Unloaded(object sender, RoutedEventArgs e)
         {
+            if (CurrentUser.UserID == 0) return;
+
+
             if (_stopwatch != null)
             {
                 _stopwatch.Stop();
