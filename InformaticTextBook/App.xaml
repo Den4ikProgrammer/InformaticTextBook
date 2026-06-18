@@ -1,0 +1,73 @@
+﻿<Application x:Class="InformaticTextBook.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:InformaticTextBook"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Foreground" Value="#556B2F"/>
+            <!-- Оливковый текст -->
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="Background" Value="#CD853F"/>
+            <!-- Терракотовый фон -->
+            <Setter Property="BorderBrush" Value="#556B2F"/>
+            <!-- Оливковый бордер -->
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#FFFDD0"/>
+            <!-- Кремовый текст -->
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="BorderBrush" Value="#556B2F"/>
+            <!-- Оливковый бордер -->
+            <Setter Property="Background" Value="#FFFDD0"/>
+            <!-- Кремовый фон -->
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="BorderBrush" Value="#556B2F"/>
+            <!-- Оливковый бордер -->
+            <Setter Property="Background" Value="#FFFDD0"/>
+            <!-- Кремовый фон -->
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#556B2F"/>
+            <!-- Оливковый текст -->
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#CD853F"/>
+            <!-- Терракотовый фон -->
+            <Setter Property="BorderBrush" Value="#556B2F"/>
+            <!-- Оливковый бордер -->
+            <Setter Property="Foreground" Value="#FFFDD0"/>
+            <!-- Кремовый текст -->
+        </Style>
+        <Style x:Key="StatCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#F5DEB3"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="BorderBrush" Value="#CD853F"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="StudentItemStyle" TargetType="Border">
+            <Setter Property="Padding" Value="15,10"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="BorderBrush" Value="#CD853F"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Application.Resources>
+</Application>

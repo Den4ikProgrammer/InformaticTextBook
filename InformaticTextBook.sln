@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36127.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformaticTextBook", "InformaticTextBook\InformaticTextBook.csproj", "{09EC0D57-9F4A-4D96-9785-9E9E8681B8DA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{841B5ED6-AF98-4439-B4DB-80EDB74FAB84} = {841B5ED6-AF98-4439-B4DB-80EDB74FAB84}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLayer", "ServiceLayer\ServiceLayer.csproj", "{841B5ED6-AF98-4439-B4DB-80EDB74FAB84}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09EC0D57-9F4A-4D96-9785-9E9E8681B8DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09EC0D57-9F4A-4D96-9785-9E9E8681B8DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09EC0D57-9F4A-4D96-9785-9E9E8681B8DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09EC0D57-9F4A-4D96-9785-9E9E8681B8DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{841B5ED6-AF98-4439-B4DB-80EDB74FAB84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{841B5ED6-AF98-4439-B4DB-80EDB74FAB84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{841B5ED6-AF98-4439-B4DB-80EDB74FAB84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{841B5ED6-AF98-4439-B4DB-80EDB74FAB84}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {335D8750-DF44-41C5-A012-CBAAD16DBFB9}
+	EndGlobalSection
+EndGlobal

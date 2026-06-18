@@ -1,0 +1,84 @@
+﻿<Page x:Class="InformaticTextBook.Pages.LectionsNavigatorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InformaticTextBook.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LectionsNavigatorPage" Loaded="Page_Loaded">
+
+    <DockPanel Background="#FFFDD0">
+        <Grid DockPanel.Dock="Top" Height="40" Background="#556B2F">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Информатика рядом" VerticalAlignment="Center" 
+                   Margin="10,0" Foreground="#FFFDD0" FontWeight="Bold" FontSize="16"/>
+
+            <TextBlock Text="{Binding UserLoginText}" Grid.Column="1" VerticalAlignment="Center" 
+                   Margin="0,0,10,0" Foreground="#FFFDD0" FontWeight="SemiBold" />
+
+            <Button x:Name="ToProfileButton" Grid.Column="2" Content="Личный кабинет" Margin="0,5,10,5" Padding="10,2"
+                VerticalAlignment="Center" Click="ToProfileButton_Click"/>
+            <Button x:Name="ExitButton" Grid.Column="5" Content="Выход" Margin="0,5,10,5" Padding="10,2"
+                VerticalAlignment="Center" Click="ExitButton_Click"/>
+            <Button x:Name="TypingTrainer" Content="Тренажер печати" Grid.Column="3" Margin="0,5,10,5" Padding="10,2"
+                VerticalAlignment="Center" Click="TypingTrainer_Click"/>
+            <Button x:Name="AlgoritmVisualizerButton" Content="Визуализатор" Grid.Column="4" Margin="0,5,10,5" Padding="10,2"
+                VerticalAlignment="Center" Click="AlgoritmVisualizerButton_Click"/>
+        </Grid>
+
+        <!-- Поисковая строка -->
+        <Border DockPanel.Dock="Top" Background="#F5DEB3" Padding="10" Margin="5 5 5 0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="🔍" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox x:Name="SearchTextBox" Width="300" Margin="10 0" 
+                 Background="#FFFDD0" BorderBrush="#556B2F"
+                 TextChanged="SearchTextBox_TextChanged"
+                 KeyDown="SearchTextBox_KeyDown"/>
+                <Button x:Name="SearchButton" Content="Поиск" 
+                Padding="10 5" Click="SearchButton_Click"/>
+                <Button x:Name="ClearSearchButton" Content="✕" 
+                Padding="8 3" Margin="5 0 0 0" Click="ClearSearchButton_Click"
+                ToolTip="Очистить поиск"/>
+            </StackPanel>
+        </Border>
+
+        <ListBox x:Name="ThemesListBox" DockPanel.Dock="Left" Width="270" Background="#F5DEB3" ItemsSource="{Binding Themes}" SelectedItem="{Binding CurrentTheme, Mode=TwoWay}" SelectionChanged="ThemesListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="8" Margin="2" Background="#FFFDD0" CornerRadius="4" HorizontalAlignment="Stretch">
+                        <TextBlock Text="{Binding ThemeName}" FontWeight="SemiBold" Foreground="#556B2F"/>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <TextBlock DockPanel.Dock="Top" Text="{Binding CurrentTheme.ThemeName}" Margin="10 0" FontWeight="Bold" FontSize="24" Foreground="#556B2F"/>
+
+        <ListBox x:Name="LecturesListBox" Background="#FFFDD0" Margin="10" ItemsSource="{Binding SelectedThemeLections}" SelectedItem="SelectedLection" SelectionChanged="LecturesListBox_SelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="6" Margin="2" Background="#F5DEB3" CornerRadius="4" HorizontalAlignment="Stretch">
+                        <DockPanel LastChildFill="True">
+                            <TextBlock Text="{Binding LectionDate}" DockPanel.Dock="Right" VerticalAlignment="Top" Margin="5,0,0,0" Foreground="#CD853F"/>
+                            <Label Content="{Binding LectionName}" VerticalAlignment="Top" HorizontalContentAlignment="Left" Foreground="#556B2F"/>
+                        </DockPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</Page>

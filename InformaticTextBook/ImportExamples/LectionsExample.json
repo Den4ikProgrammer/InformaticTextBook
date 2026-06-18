@@ -1,0 +1,20 @@
+[
+  {
+    "ThemeName": "Пример импорта1",
+    "LectionName": "Тест1",
+    "LectionText": "тест.1",
+    "LectionDate": "2025-12-10"
+  },
+  {
+    "ThemeName": "Пример импорта2",
+    "LectionName": "Тест2",
+    "LectionText": "тест.2",
+    "LectionDate": "2025-12-10"
+  },
+  {
+    "ThemeName": "Пример импорта3",
+    "LectionName": "Тест3",
+    "LectionText": "тест.3",
+    "LectionDate": "2025-12-10"
+  }
+]

@@ -1,0 +1,68 @@
+﻿[
+  {
+    "LectionName": "Тест1",
+    "QuestionText": "ответы",
+    "Answers": [
+      {
+        "AnswerText": "O(нет)",
+        "IsCorrect": false
+      },
+      {
+        "AnswerText": "O(нет)",
+        "IsCorrect": false
+      },
+      {
+        "AnswerText": "O(нет)",
+        "IsCorrect": false
+      },
+      {
+        "AnswerText": "O(да)",
+        "IsCorrect": true
+      }
+    ]
+  },
+  {
+    "LectionName": "Тест2",
+    "QuestionText": "ответы",
+    "Answers": [
+      {
+        "AnswerText": "не",
+        "IsCorrect": false
+      },
+      {
+        "AnswerText": "нет",
+        "IsCorrect": false
+      },
+      {
+        "AnswerText": "да",
+        "IsCorrect": true
+      },
+      {
+        "AnswerText": "нет",
+        "IsCorrect": false
+      }
+    ]
+  },
+  {
+    "LectionName": "Тест3",
+    "QuestionText": "ответы",
+    "Answers": [
+      {
+        "AnswerText": "нет",
+        "IsCorrect": false
+      },
+      {
+        "AnswerText": "нет",
+        "IsCorrect": false
+      },
+      {
+        "AnswerText": "да",
+        "IsCorrect": true
+      },
+      {
+        "AnswerText": "net",
+        "IsCorrect": false
+      }
+    ]
+  }
+]

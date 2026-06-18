@@ -1,0 +1,118 @@
+﻿<Page x:Class="InformaticTextBook.Pages.TestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InformaticTextBook.Pages"
+      xmlns:converters="clr-namespace:InformaticsTextBook.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Авторизация" Loaded="Page_Loaded">
+    <Page.Resources>
+        <converters:BoolToInverseConverter x:Key="BoolToInverseConverter"/>
+    </Page.Resources>
+    <DockPanel Background="#FFFDD0">
+        <Grid DockPanel.Dock="Top" Height="40" Background="#556B2F">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="ToLectionButton" Content="К лекции" Margin="5" 
+                    Padding="10,2" VerticalAlignment="Center" Click="ToLectionButton_Click"/>
+            <Button x:Name="ToNavigatorButton" Content="На главную" Grid.Column="1" Margin="5" 
+                    Padding="10,2" VerticalAlignment="Center" Click="ToNavigatorButton_Click"/>
+            <TextBlock Text="{Binding UserLoginText}" Grid.Column="3" 
+                       VerticalAlignment="Center" Margin="0,0,10,0" 
+                       Foreground="#FFFDD0" FontWeight="SemiBold"/>
+        </Grid>
+
+        <TextBlock DockPanel.Dock="Top" Text="{Binding TestName}" 
+                   Margin="15 5" FontWeight="Bold" FontSize="24" 
+                   Foreground="#556B2F"/>
+
+        <Border DockPanel.Dock="Top" Height="5" Background="#556B2F" Margin="5 0" CornerRadius="5"/>
+        <Button x:Name="StartTestButton" DockPanel.Dock="Top" HorizontalAlignment="Center" Content="Начать тест" Margin="5" Click="StartTestButton_Click"/>
+        <DockPanel Visibility="Collapsed" x:Name="BottomPanel"  DockPanel.Dock="Bottom">
+            <Button x:Name="FinishTestButton" Content="Завершить тест" Padding="15 5" Margin="5" Click="FinishTestButton_Click" DockPanel.Dock="Right"/>
+            <Button x:Name="ToResultButton" Content="К результатам" Padding="15 5" Margin="5" Click="ToResultButton_Click" Visibility="Collapsed" DockPanel.Dock="Right"/>
+            <TextBlock Text="{Binding RemainingTimeText, StringFormat=Оставшееся время: {0}}"/>
+        </DockPanel>
+        <Border DockPanel.Dock="Bottom" Height="5" Background="#556B2F" Margin="5 0" CornerRadius="5"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="15 0">
+            <StackPanel Visibility="Collapsed" x:Name="QuestionsPanel" Margin="10 0">
+                <ItemsControl ItemsSource="{Binding TestQuestions}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5">
+                                <TextBlock Text="{Binding QuestionText}" 
+                                           FontWeight="Bold" FontSize="16" 
+                                           Foreground="#556B2F"/>
+                                <ListBox x:Name="AnswersList"
+                                         ItemsSource="{Binding Answers}"
+                                         Background="#F5DEB3"
+                                         SelectionMode="Single"
+                                         SelectedItem="{Binding SelectedAnswer, Mode=TwoWay}" 
+                                         Margin="0 0 30 0"
+                                         IsEnabled="{Binding IsTestFinished, Converter={StaticResource BoolToInverseConverter}}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border HorizontalAlignment="Stretch"
+                                                    BorderThickness="2" 
+                                                    CornerRadius="5" 
+                                                    Margin="2"
+                                                    Padding="5">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="Background" Value="Transparent"/>
+                                                        <Style.Triggers>
+                                                            <!-- ✅ Выбранный правильный -->
+                                                            <MultiDataTrigger>
+                                                                <MultiDataTrigger.Conditions>
+                                                                    <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=IsSelected}" Value="True"/>
+                                                                    <Condition Binding="{Binding IsCorrect}" Value="True"/>
+                                                                    <Condition Binding="{Binding DataContext.IsTestFinished, RelativeSource={RelativeSource AncestorType=ListBox}}" Value="True"/>
+                                                                </MultiDataTrigger.Conditions>
+                                                                <Setter Property="Background" Value="LimeGreen"/>
+                                                            </MultiDataTrigger>
+
+                                                            <!-- ❌ Выбранный неправильный -->
+                                                            <MultiDataTrigger>
+                                                                <MultiDataTrigger.Conditions>
+                                                                    <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=IsSelected}" Value="True"/>
+                                                                    <Condition Binding="{Binding IsCorrect}" Value="False"/>
+                                                                    <Condition Binding="{Binding DataContext.IsTestFinished, RelativeSource={RelativeSource AncestorType=ListBox}}" Value="True"/>
+                                                                </MultiDataTrigger.Conditions>
+                                                                <Setter Property="Background" Value="LightCoral"/>
+                                                            </MultiDataTrigger>
+
+                                                            <!-- ✅ Правильный, но не выбранный -->
+                                                            <MultiDataTrigger>
+                                                                <MultiDataTrigger.Conditions>
+                                                                    <Condition Binding="{Binding IsCorrect}" Value="True"/>
+                                                                    <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=IsSelected}" Value="False"/>
+                                                                    <Condition Binding="{Binding DataContext.IsTestFinished, RelativeSource={RelativeSource AncestorType=ListBox}}" Value="True"/>
+                                                                </MultiDataTrigger.Conditions>
+                                                                <Setter Property="Background" Value="LightGreen"/>
+                                                            </MultiDataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style> 
+                                                <RadioButton Content="{Binding AnswerText}" 
+                                                             GroupName="{Binding QuestionId}"
+                                                             IsChecked="{Binding RelativeSource={RelativeSource 
+                                                             AncestorType=ListBoxItem}, Path=IsSelected, Mode=TwoWay}"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Page>
