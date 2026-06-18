@@ -22,6 +22,7 @@ namespace InformaticTextBook.Pages
         private static int ProfileOwnerId { get; set; }
         private static User ProfileOwner { get; set; }
 
+
         public ProfilePage(int profileOwnerId)
         {
             InitializeComponent();
