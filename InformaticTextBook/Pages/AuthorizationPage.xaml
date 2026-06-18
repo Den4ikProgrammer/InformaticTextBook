@@ -14,7 +14,7 @@
             <StackPanel>
                 <Ellipse Width="150" Height="150" Margin="0,20,0,0">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="C:\Users\michu\OneDrive\Desktop\КП\InformaticTextBook\InformaticTextBook\Images\logo.png"/>
+                        <ImageBrush ImageSource="/logo.png"/>
                     </Ellipse.Fill>
                 </Ellipse>
 
