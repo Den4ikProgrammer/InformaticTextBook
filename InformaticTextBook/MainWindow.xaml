@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InformaticTextBook"
         mc:Ignorable="d"
-        Title="Информаткиа" Height="500" Width="1000" WindowStartupLocation="CenterScreen" Icon="logo.ico">
+        Title="Информатика"  WindowStartupLocation="CenterScreen" Icon="logo.ico" MinWidth="500" MinHeight="1000" WindowStyle="ThreeDBorderWindow" WindowState="Maximized" >
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="/Pages/AuthorizationPage.xaml"/>
     </Grid>

@@ -46,7 +46,6 @@ namespace InformaticTextBook.Pages
             {
                 var results = await _searchService.SearchAsync(_query);
 
-                MessageBox.Show($"Поиск: '{_query}', найдено: {results.Count}", "Отладка");
                 foreach (var r in results)
                     System.Diagnostics.Debug.WriteLine($"  - {r.ThemeName} / {r.LectionName}");
 

@@ -51,7 +51,7 @@
             </StackPanel>
         </Border>
 
-        <ListBox x:Name="ThemesListBox" DockPanel.Dock="Left" Width="270" Background="#F5DEB3" ItemsSource="{Binding Themes}" SelectedItem="{Binding CurrentTheme, Mode=TwoWay}" SelectionChanged="ThemesListBox_SelectionChanged">
+        <ListBox x:Name="ThemesListBox" HorizontalContentAlignment="Stretch" DockPanel.Dock="Left" Width="270" Background="#F5DEB3" ItemsSource="{Binding Themes}" SelectedItem="{Binding CurrentTheme, Mode=TwoWay}" SelectionChanged="ThemesListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Padding="8" Margin="2" Background="#FFFDD0" CornerRadius="4" HorizontalAlignment="Stretch">
