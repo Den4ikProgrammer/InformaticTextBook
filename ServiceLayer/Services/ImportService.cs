@@ -25,7 +25,7 @@ namespace ServiceLayer.Services
             _context = context;
         }
 
-        // Импорт лекций из JSON
+        // Импорт лекций 
         public async Task<ImportResult> ImportFromDocxAsync(string filePath)
         {
             var result = new ImportResult();
@@ -33,7 +33,10 @@ namespace ServiceLayer.Services
             {
                 using var stream = File.OpenRead(filePath);
                 using var doc = WordprocessingDocument.Open(stream, false);
+   
                 var body = doc.MainDocumentPart?.Document.Body;
+                System.Diagnostics.Debug.WriteLine("=== НАЧАЛО ИМПОРТА ===");
+                System.Diagnostics.Debug.WriteLine($"Всего элементов: {body.Elements().Count()}");
                 if (body == null)
                 {
                     result.Errors.Add("Документ пуст или повреждён");
@@ -48,17 +51,20 @@ namespace ServiceLayer.Services
                     var element = elements[i];
                     if (element is not Paragraph para) continue;
 
-                    string text = para.InnerText.Trim();
+                    string text = para.InnerText.Trim();               
+
                     if (string.IsNullOrWhiteSpace(text)) continue;
 
                     var style = para.ParagraphProperties?.ParagraphStyleId?.Val?.Value;
 
-                    if (style?.Contains("Heading1") == true)
+                    System.Diagnostics.Debug.WriteLine($"  [{style}] {text[..Math.Min(50, text.Length)]}");
+
+                    if (style == "Heading1" || style == "1")
                     {
                         await SaveCurrentLection(result, state);
                         state.ThemeName = text.Replace("Тема:", "").Replace("#", "").Trim();
                     }
-                    else if (style?.Contains("Heading2") == true)
+                    else if (style == "Heading2" || style == "2")
                     {
                         await SaveCurrentLection(result, state);
                         state.LectionName = text.Replace("Лекция:", "").Replace("##", "").Trim();
@@ -67,7 +73,7 @@ namespace ServiceLayer.Services
                     {
                         state.LectionDate = text.Replace("Дата:", "").Trim();
                     }
-                    else if (text.StartsWith("### Вопросы") || text.StartsWith("Вопросы:"))
+                    else if (text.StartsWith("Вопросы:") || text.StartsWith("### Вопросы"))
                     {
                         var parsedQuestions = ParseQuestions(elements, ref i);
                         state.Questions.AddRange(parsedQuestions);
@@ -80,7 +86,9 @@ namespace ServiceLayer.Services
                 }
 
                 // Сохраняем последнюю лекцию
+                System.Diagnostics.Debug.WriteLine($"Сохраняется лекция: {state.LectionName}, вопросов: {state.Questions.Count}");
                 await SaveCurrentLection(result, state);
+
                 await _context.SaveChangesAsync();
                 result.Success = true;
             }
@@ -132,6 +140,8 @@ namespace ServiceLayer.Services
 
                 if (isQuestion)
                 {
+                    System.Diagnostics.Debug.WriteLine($"  Найден вопрос: {text[..Math.Min(40, text.Length)]}");
+                   
                     var question = new ImportQuestion
                     {
                         QuestionText = text,
@@ -189,7 +199,9 @@ namespace ServiceLayer.Services
                         questions.Add(question);
                 }
             }
+            System.Diagnostics.Debug.WriteLine($"  Всего найдено вопросов: {questions.Count}");
 
+            index = elements.Count - 1;
             return questions;
         }
 
@@ -228,6 +240,8 @@ namespace ServiceLayer.Services
             // Создать тест и вопросы
             if (state.Questions.Any())
             {
+                System.Diagnostics.Debug.WriteLine($"Создаётся тест для лекции: {lection.LectionName}");
+
                 var test = new Test { LectionId = lection.LectionId };
                 _context.Tests.Add(test);
                 await _context.SaveChangesAsync();
@@ -235,6 +249,9 @@ namespace ServiceLayer.Services
 
                 foreach (var q in state.Questions)
                 {
+                    System.Diagnostics.Debug.WriteLine($"  Добавляется вопрос: {q.QuestionText[..Math.Min(30, q.QuestionText.Length)]}");
+
+
                     var question = new Question { TestId = test.TestId, QuestionText = q.QuestionText };
                     _context.Questions.Add(question);
                     await _context.SaveChangesAsync();
@@ -248,6 +265,11 @@ namespace ServiceLayer.Services
                     result.ImportedAnswers += q.Answers.Count;
                 }
             }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine($"Вопросов нет для лекции: {lection.LectionName}");
+            }
+
 
             // Очищаем состояние
             state.LectionName = null;

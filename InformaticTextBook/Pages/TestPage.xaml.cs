@@ -111,7 +111,8 @@ namespace InformaticTextBook.Pages
             foreach (Question question in Test.Questions)
             {
                 string text = question.QuestionText.Trim();
-                bool alreadyNumbered = text.Length > 2 && char.IsDigit(text[0]) && text[1] == '.';
+                bool alreadyNumbered = text.Length > 2 && char.IsDigit(text[0]) &&
+                (text[1] == '.' || (char.IsDigit(text[1]) && text.Length > 3 && text[2] == '.'));
 
                 QuestionDTO questionDTO = new QuestionDTO()
                 {
